@@ -1,0 +1,16 @@
+{
+  "name": "sup",
+  "version": "1.0.0",
+  "description": "simple screen shot uploads",
+  "main": "sup.js",
+  "dependencies": {
+    "chokidar": "^1.6.0",
+    "node-notifier": "^4.6.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "strong-code",
+  "license": "MIT"
+}
