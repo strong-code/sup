@@ -4,7 +4,7 @@ simple screenshot upload tool for OSX.
 take screenshot -> automatically upload -> get a desktop notification and the url on your clipboard
 
 install with
-  `$ git clone && [sudo] npm install forever -g`
+  `$ git clone https://github.com/strong-code/sup.git && cd sup && [sudo] npm install forever -g`
 
 run with
   `$ forever start sup.js`
