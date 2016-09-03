@@ -1,3 +1,4 @@
 {
-  "watchDir": "/Users/yourusername/Documents/screenshots"
+  "watchDir": "/Users/yourusername/Documents/screenshots",
+  "uploadCmd": "some command to upload a file to an image host that returns a URL to hosted image"
 }
