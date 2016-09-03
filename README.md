@@ -13,7 +13,8 @@ run with
 
 Edit `config.json` with the *absolute* path of wherever you save your screenshots.
 Add in your command that must return a URL to the hosted image. Imgur and other popular
-image hosts have command line upload tools you can use for this.
+image hosts have command line upload tools you can use for this. It must take the file path
+as the only argument.
 
 # FAQs
 To change the save path of OSX's screenshot tool, use `defaults write com.apple.screencapture location /new/path/here/` then `killall SystemUIServer`.

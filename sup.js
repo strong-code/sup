@@ -15,7 +15,11 @@ const watcher  = chokidar.watch(config.watchDir, {
   .on('add', (path) => {
     return fs.stat(path, (err, stats) => {
       if (stats.mtime > startup) {
-        return exec(config.uploadCmd, {shell: "/bin/bash"}, (err, stdout, stderr) => {
+        const friendlyPath = path.replace(/ /g, "_");
+        fs.renameSync(path, friendlyPath);
+        const cmd = `. ~/.bash_profile && ${config.uploadCmd} ${friendlyPath}`;
+
+        return exec(cmd, {shell: "/bin/bash"}, (err, stdout, stderr) => {
           if (err) {
             return notifier.notify({
               title: '✘ Upload failed',
@@ -23,11 +27,12 @@ const watcher  = chokidar.watch(config.watchDir, {
             });
           }
 
-          notifier.notify({
+          return notifier.notify({
             title: '✔ Upload complete',
             message: stdout
           });
+
         });
       }
-    })
+    });
   });
