@@ -27,9 +27,9 @@ const watcher  = chokidar.watch(config.watchDir, {
             });
           }
 
-          return notifier.notify({
+          notifier.notify({
             title: '✔ Upload complete',
-            message: stdout
+            message: friendlyPath
           });
 
         });
