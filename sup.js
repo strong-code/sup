@@ -13,11 +13,15 @@ const watcher  = chokidar.watch(config.watchDir, {
   persistent: true
 })
   .on('add', (path) => {
+    if (path.indexOf(' ') >= 0) {
+      console.log('Renaming to friendly path')
+      const friendlyPath = path.replace(/ /g, "_");
+      fs.renameSync(path, friendlyPath);
+      return;
+    }
     return fs.stat(path, (err, stats) => {
       if (stats.mtime > startup) {
-        const friendlyPath = path.replace(/ /g, "_");
-        fs.renameSync(path, friendlyPath);
-        const cmd = `. ~/.bash_profile && ${config.uploadCmd} ${friendlyPath}`;
+        const cmd = `. ~/.bash_profile && ${config.uploadCmd} ${path}`;
 
         return exec(cmd, {shell: "/bin/bash"}, (err, stdout, stderr) => {
           if (err) {
@@ -29,7 +33,7 @@ const watcher  = chokidar.watch(config.watchDir, {
 
           notifier.notify({
             title: '✔ Upload complete',
-            message: friendlyPath
+            message: path
           });
 
         });
